@@ -1,5 +1,6 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+const webpack = require('webpack')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
     entry: './src/main.js',
@@ -16,9 +17,19 @@ module.exports = {
             {
                 test: /\.pug$/,
                 loader: 'pug-vueify',
+            }, {
+                test: /\.styl$/,
+                use: ['extracted-loader'].concat(
+                    ExtractTextPlugin.extract({
+                        use: ['css-loader', 'stylus-loader'],
+                    })
+                ),
             },
         ],
     },
+    plugins: [
+        new ExtractTextPlugin('bundle.css'),
+    ],
     devServer: {
       historyApiFallback: true,
       noInfo: true,
