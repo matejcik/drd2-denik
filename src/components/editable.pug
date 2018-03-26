@@ -1,0 +1,7 @@
+.field
+    if !editable
+        = value
+    else if !isTextarea
+        input(type="text", value=value, @input=update)
+    else
+        textarea(@input=update)= value

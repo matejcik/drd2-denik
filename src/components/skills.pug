@@ -1,0 +1,9 @@
+.skills
+    each skill in skillLevels
+        .skill
+            .label= skill.name
+            blocks(sections=skill.sections)
+    select(@input=setCurrentSkill)
+        each skill in SKILLS
+            option(value=skill)= skill
+    button(@click=addSkill) Přidat

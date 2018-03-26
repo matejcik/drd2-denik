@@ -1,0 +1,6 @@
+.resource
+    .label= label
+    if editable
+        plusminus(value=resource.limit, @input=(val => resource.limit = val))
+    blocks(sections=sections, @available=consume, @consumed=replenish)
+    .scar($raw="\u2620", @click=addscar)

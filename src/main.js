@@ -1,47 +1,43 @@
 import Vue from 'vue'
 
-import pugIndex from '../pug/index.pug'
+import appTmpl from './components/app.pug'
+import vuePug, { pugTemplate } from './vue-pug'
+import { Character, Resource } from "./drd"
 
-function filterCreateElement(h) {
-    return function(elem, attrs, children) {
-        let data = {
-            style: attrs.style,
-            class: attrs.class,
-            attrs,
-            on: {},
-            props: {},
-        }
+import './styles/drd.styl'
 
-        for (let key in attrs) {
-            if (key.startsWith("on")) {
-                let evkey = key.replace(/^on/, "")
-                data.on[evkey] = attrs[key]
-                delete attrs[key]
-            }
-        }
-        return h(elem, data, children)
-    }
+vuePug("blocks")
+vuePug("editable")
+vuePug("plusminus")
+vuePug("resource")
+vuePug("skills")
+vuePug("character")
+
+let Storage = window.localStorage
+let charJSON = Storage.getItem("character")
+let character
+if (charJSON) {
+    character = Character.fromJSON(charJSON)
+} else {
+    character = new Character()
 }
 
-function pugTemplate(tmpl) {
-    return function(h) {
-        h = filterCreateElement(h)
-        let nodes = tmpl(this, h)
-        if (nodes.length > 1) {
-            throw "More than one root node for component"
-        }
-        return nodes[0]
-    }
-}
+window.character = character
+
+let App = Vue.component('App', {
+    render: pugTemplate(appTmpl),
+    data() { return { character }},
+    computed: {
+        serial() { return JSON.stringify(this.character) }
+    },
+    watch: {
+        serial(val) {
+            Storage.setItem("character", val)
+        },
+    },
+})
 
 new Vue({
     el: '#app',
-    render: pugTemplate(pugIndex),
-    data() { return { hello: "ahoj babi" }},
-    methods: {
-        click() {
-            console.log("jak se máš")
-            this.hello = "jak se máš"
-        },
-    },
+    render: h => h(App),
 })

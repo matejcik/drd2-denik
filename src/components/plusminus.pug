@@ -1,0 +1,6 @@
+span.spinner
+    input(type="button", value="-", @click=decrease)
+    |
+    input(type="number", value=value, @input=set)
+    |
+    input(type="button", value="+", @click=increase)

@@ -1,0 +1,103 @@
+body
+    padding: 0
+    margin: 0
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-size: 16pt
+
+.topbar
+    height: 3rem
+    display: flex
+    flex-wrap: nowrap
+    align-items: center
+    color: #bbb
+    background-color: #c90404; /* Old browsers */
+    background: linear-gradient(to bottom, #c90404 0%,#a90329 27%,#8f0222 80%,#6d0019 100%)
+
+    .menubutton
+        width: 3rem
+        text-align: center
+        font-size: 28pt
+        border-right: 1px solid #844
+
+    .toplabel
+        margin-left: 1rem
+        font-weight: bold
+
+block-colors($border, $fill)
+    .one
+        border-color: $border
+    .available .one
+        background-color: $fill
+
+.content
+    padding: 0.7rem
+
+.resource
+    user-select: none
+    display: flex
+    flex-wrap: nowrap
+    align-items: center
+
+    .scar
+        margin-left: auto
+
+    .label
+        width: 4rem
+        font-weight: bold
+        font-size: 16pt
+
+.blocks
+    line-height: 0
+
+    .section
+    .one
+        display: inline-block
+
+    .one
+        $size = 2rem
+        box-sizing: border-box
+        width: $size
+        height: $size
+        border: 5px solid
+        margin: 5px
+        background-color: transparent
+
+    .scarred .one
+        border-style: dotted
+        background-color: transparent
+
+    block-colors black gray;
+
+.skill
+    font-size: 12pt
+    display: flex
+    flex-wrap: nowrap
+    align-items: center
+    margin: 0.5rem
+    .one
+        $size = 1.4rem
+        width: $size
+        height: $size
+        border-width: 3px
+        margin: 2px
+        line-height: 0
+    .levels .one
+        background-color: #888
+    .label
+        display: inline-block
+        margin: 0.3rem
+        width: 5em
+        text-align: right
+
+.skills
+    display: flex
+    flex-wrap: wrap
+
+.telo
+    block-colors #a00 #f66
+
+.duse
+    block-colors #00a #66f
+
+.vliv
+    block-colors #0a0 #6f6

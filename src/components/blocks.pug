@@ -1,0 +1,5 @@
+.blocks
+    each section in sections
+        .section(class=section.class, @click=()=>click(section.class))
+            each n in [...Array(section.count).keys()]
+                .one= " "
